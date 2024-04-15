@@ -1,0 +1,59 @@
+positions = ['G', 'G', 'G', '-', 'B', 'B', 'B']
+print("Current Status of Game :")
+print("[ 0    1    2    3    4    5    6]")
+print(positions)
+print("##### Enter number between 0 to 6 only #####")
+print("Winning Condition: ['B', 'B', 'B', '-', 'G', 'G', 'G']")
+
+while True:
+  user_input = input("Press q to quit else \nEnter position of piece:")
+  if user_input.lower()=='q':
+    print('YOU LOSE!')
+    break
+
+  #Converting input to an integer
+  user_input = int(user_input)
+
+  #Check for valid move
+  if user_input  < 0 or 6 < user_input:
+    print("Invalid Move")
+    continue
+if positions[user_input] == '-':
+    print("Invalid Move")
+    continue
+
+  index=0
+  if positions[user_input]=='G':
+    if (user_input+1)<=6 and positions[user_input+1]=='-':
+      index=user_input+1
+    elif (user_input+2)<=6 and positions[user_input+2]=='-':
+      index=user_input+2
+    else:
+      print('Invalid Move')
+      continue
+
+  elif positions[user_input]=='B':
+    if (user_input-1)>=0 and positions[user_input-1]=='-':
+      index=user_input-1
+    elif (user_input-2)>=0 and positions[user_input-2]=='-':
+      index= user_input-2
+    else:
+      print('Invalid Move')
+      continue
+
+  # Moving the frog to next valid position by swapping elelments of array.
+  positions[user_input],positions[index] = positions[index],positions[user_input]
+print("[ 0    1    2    3    4    5    6]")
+  print(positions)
+
+  if positions==['B', 'B', 'B', '-', 'G', 'G', 'G']:
+    print("YOU WIN")
+    break
+
+  if positions==['G', 'G', 'G', 'B', 'B', 'B', '-']:
+    print("YOU LOSE!")
+    break
+
+  if positions==['-', 'G', 'G', 'G', 'B', 'B', 'B']:
+    print("YOU LOSE!")
+    break
